@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build project
-        run: msbuild /p:Configuration=Release /p:Platform="Any CPU" ConsoleApp1.csproj
+        run: msbuild /p:Configuration=Debug /p:Platform="Any CPU" ConsoleApp1.csproj
 
       - name: Publish project
         run: |
