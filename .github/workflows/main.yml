@@ -1,0 +1,22 @@
+name: Build and Publish ClickOnce Project
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build project
+        run: msbuild /p:Configuration=Release /p:Platform="Any CPU" ConsoleApp1.csproj
+
+      - name: Publish project
+        run: |
+          mkdir publish
+          msbuild /target:publish /p:PublishProfile=ClickOnceProfile.pubxml /p:PublishDir=$(realpath publish)
